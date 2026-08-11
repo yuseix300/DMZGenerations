@@ -11,6 +11,9 @@ authors="${mod_authors}"
 description='''${mod_description}'''
 displayTest="MATCH_VERSION"
 
+[[mixins]]
+config="dmzgenerations.mixins.json"
+
 # ============================================================================
 #  Dependencies
 #  DragonMineZ and everything it needs are MANDATORY for this addon.

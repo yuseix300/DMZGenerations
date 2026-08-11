@@ -1,0 +1,19 @@
+{
+  "lifestage.dmzgenerations.child": "Niño",
+  "lifestage.dmzgenerations.teen": "Adolescente",
+  "lifestage.dmzgenerations.young_adult": "Joven adulto",
+  "lifestage.dmzgenerations.adult": "Adulto",
+  "lifestage.dmzgenerations.elder": "Anciano",
+  "message.dmzgenerations.grew": "§eHas crecido.§r Ahora tienes §b%s§r años (%s).",
+  "message.dmzgenerations.stage_up": "§6¡Has crecido!§r Ahora eres §b%s§r (%s años).",
+  "hud.dmzgenerations.age": "§eEdad:§r %s (%s)",
+  "tooltip.dmzgenerations.age": "§eEdad:§r %s (%s)",
+  "tooltip.dmzgenerations.generation": "§eGeneración:§r %s",
+  "tooltip.dmzgenerations.buff": "§eBonus vida pasada:§r x%s",
+  "gui.dmzgenerations.button.rebirth": "Renacer",
+  "message.dmzgenerations.rebirth.success": "§6¡Has renacido!§r Ahora eres Generación §b%s§r.",
+  "message.dmzgenerations.rebirth.not_elder": "§cDebes ser anciano para renacer.",
+  "message.dmzgenerations.rebirth.max": "§cYa estás en la generación máxima.",
+  "message.dmzgenerations.rebirth.level": "§cTu nivel es muy bajo para renacer (necesitas §e%s§c).",
+  "message.dmzgenerations.rebirth.no_character": "§cNecesitas un personaje de DragonMineZ primero."
+}

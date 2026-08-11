@@ -1,3 +1,19 @@
 {
-  "_comment": "Language keys for DMZ: Generations. Source locale for translations."
+  "lifestage.dmzgenerations.child": "Child",
+  "lifestage.dmzgenerations.teen": "Teenager",
+  "lifestage.dmzgenerations.young_adult": "Young Adult",
+  "lifestage.dmzgenerations.adult": "Adult",
+  "lifestage.dmzgenerations.elder": "Elder",
+  "message.dmzgenerations.grew": "§eYou've grown.§r You are now §b%s§r years old (%s).",
+  "message.dmzgenerations.stage_up": "§6You've grown up!§r You are now §b%s§r (%s years old).",
+  "hud.dmzgenerations.age": "§eAge:§r %s (%s)",
+  "tooltip.dmzgenerations.age": "§eAge:§r %s (%s)",
+  "tooltip.dmzgenerations.generation": "§eGeneration:§r %s",
+  "tooltip.dmzgenerations.buff": "§ePast-life bonus:§r x%s",
+  "gui.dmzgenerations.button.rebirth": "Rebirth",
+  "message.dmzgenerations.rebirth.success": "§6You've been reborn!§r You are now Generation §b%s§r.",
+  "message.dmzgenerations.rebirth.not_elder": "§cYou must be an Elder to be reborn.",
+  "message.dmzgenerations.rebirth.max": "§cYou are already at the maximum generation.",
+  "message.dmzgenerations.rebirth.level": "§cYour level is too low to be reborn (need §e%s§c).",
+  "message.dmzgenerations.rebirth.no_character": "§cYou need a DragonMineZ character first."
 }

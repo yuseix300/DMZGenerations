@@ -3,6 +3,9 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '6.0.30'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    // Sets up SRG<->named mixin refmap remapping for the dev runtime. This is what makes
+    // BOTH our own mixins AND DragonMineZ's mixins resolve when running runClient in dev.
+    id 'org.spongepowered.mixin' version '0.7.38'
 }
 
 version = project.mod_version
@@ -21,8 +24,24 @@ tasks.withType(JavaCompile).configureEach {
     options.release = 17
 }
 
+// Registers our mixin config + refmap. Declaring at least one config here is what makes
+// the mixin plugin inject the refmap-remapping args into the run tasks (fixes DMZ's
+// mixins in dev too). Our own mixins (chibi model scaling, etc.) go in this config later.
+mixin {
+    add sourceSets.main, 'dmzgenerations.refmap.json'
+    config 'dmzgenerations.mixins.json'
+}
+
 repositories {
-    // Drop the DragonMineZ dev/sources jar in libs/ to compile against its API.
+    // DragonMineZ is published on the Modrinth Maven — this is the standard way DMZ
+    // addons depend on it, and it deobfuscates cleanly (so mixins work in dev runClient).
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+        content { includeGroup 'maven.modrinth' }
+    }
+    // flatDir is only for the ALTERNATIVE local-jar path (testing against your own DMZ
+    // build). Harmless when unused.
     flatDir { dirs 'libs' }
 
     maven {
@@ -80,15 +99,21 @@ minecraft {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
 
     // --- DragonMineZ (mandatory parent mod) ---
-    // Place the DragonMineZ dev jar (e.g. dragonminez-2.1.1-beta-sources.jar renamed
-    // to dragonminez.jar) into the libs/ folder, then uncomment the lines below to
-    // compile against its API. The mod is always required at runtime (see mods.toml).
-    // compileOnly fg.deobf(files('libs/dragonminez.jar'))
-    // runtimeOnly fg.deobf(files('libs/dragonminez.jar'))
+    // Pulled from the Modrinth Maven — the standard way DMZ addons depend on it (this is
+    // how other addons make it work in dev). fg.deobf deobfuscates it, so its mixins
+    // resolve in the dev runClient. Coordinate: maven.modrinth:<project>:<version_number>
+    // (dragonminez 2.1.3 == Modrinth version id yZ4DgZaE). Bump the version to target a
+    // newer DMZ release.
+    implementation fg.deobf("maven.modrinth:dragonminez:2.1.3")
 
-    // --- DragonMineZ's dependencies (also required by this addon) ---
+    // ALTERNATIVE — compile/run against a LOCAL DMZ build (your own unreleased changes):
+    // comment the line above, drop the jar as libs/dragonminez-${dmz_local_version}.jar,
+    // and use the flatDir repo declared above with:
+    //   implementation fg.deobf("dmzlocal:dragonminez:${project.dmz_local_version}")
+
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.8.3")
     implementation "com.eliotlash.mclib:mclib:20"
     implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:1.20.1-3.0.1.10")

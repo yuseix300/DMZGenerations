@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "com.yuseix300.dmzgenerations.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "dmzgenerations.refmap.json",
+  "mixins": [
+    "StatsResetMixin"
+  ],
+  "client": [
+    "client.CharacterStatsScreenMixin",
+    "client.CharacterCreationAgeMixin",
+    "client.MasterTextScreenRebirthMixin",
+    "client.DMZPlayerRendererMixin",
+    "client.DMZSkinLayerMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
