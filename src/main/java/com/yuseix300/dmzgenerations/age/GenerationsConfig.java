@@ -37,9 +37,9 @@ public class GenerationsConfig {
         };
     }
 
-    public double trainGainChild = 1.6;
-    public double trainGainTeen = 1.35;
-    public double trainGainYoungAdult = 1.1;
+    public double trainGainChild = 1.1;
+    public double trainGainTeen = 1.6;
+    public double trainGainYoungAdult = 1.3;
     public double trainGainAdult = 1.0;
     public double trainGainElder = 0.85;
     public double childSpeedMultiplier = 1.30;
@@ -51,6 +51,33 @@ public class GenerationsConfig {
     public double adultCritBonus = 0.15;
     public double elderMentorTrainBonus = 0.25;
     public double elderMentorRadius = 8.0;
+
+    public double htcAgingMultiplier = 30.0;
+
+    public boolean elderAchaquesEnabled = true;
+    public double elderAchaqueDamage = 4.0;
+    public boolean elderAchaqueLethal = false;
+    public int elderAchaqueMaxIntervalSec = 120;
+    public int elderAchaqueMinIntervalSec = 45;
+    public int elderAchaqueVeryOldAge = 200;
+
+    public boolean growthEffectsEnabled = true;
+
+    public boolean grayHairEnabled = true;
+    public int grayHairStartAge = 60;
+    public int grayHairFullAge = 120;
+
+    public int elderAchaqueInterval(double age) {
+        double span = Math.max(1.0, elderAchaqueVeryOldAge - LifeStage.ELDER.minAge);
+        double t = Math.min(1.0, Math.max(0.0, (age - LifeStage.ELDER.minAge) / span));
+        return (int) Math.round(elderAchaqueMaxIntervalSec + (elderAchaqueMinIntervalSec - elderAchaqueMaxIntervalSec) * t);
+    }
+
+    public float grayHairStrength(double age) {
+        if (!grayHairEnabled || age <= grayHairStartAge) return 0.0f;
+        if (age >= grayHairFullAge) return 1.0f;
+        return (float) ((age - grayHairStartAge) / (double) (grayHairFullAge - grayHairStartAge));
+    }
 
     public double trainGain(LifeStage stage) {
         return switch (stage) {
@@ -67,13 +94,13 @@ public class GenerationsConfig {
     }
 
     public boolean modelScalingEnabled = true;
-    public double modelScaleChild = 0.65;
+    public double modelScaleChild = 0.5;
     public double modelScaleTeen = 0.80;
     public double modelScaleYoungAdult = 1.0;
     public double modelScaleAdult = 1.0;
     public double modelScaleElder = 0.90;
 
-    public double chibiHeadScale = 0.9;
+    public double chibiHeadScale = 0.8;
     public double chibiFullUntilAge = 8.0;
 
     public float chibiStrength(double age) {

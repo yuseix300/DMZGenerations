@@ -12,7 +12,8 @@
     "client.CharacterCreationAgeMixin",
     "client.MasterTextScreenRebirthMixin",
     "client.DMZPlayerRendererMixin",
-    "client.DMZSkinLayerMixin"
+    "client.DMZSkinLayerMixin",
+    "client.DMZCharacterMixin"
   ],
   "server": [],
   "injectors": {

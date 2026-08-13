@@ -15,6 +15,8 @@ public final class ClientAgeData {
 
     private static final Map<Integer, Entry> ENTRIES = new HashMap<>();
 
+    public static double renderAgeYears = -1.0;
+
     public static void set(int entityId, double ageYears, int generation, double multiplier) {
         ENTRIES.put(entityId, new Entry(ageYears, generation, multiplier));
     }

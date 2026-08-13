@@ -41,10 +41,12 @@ public class DMZPlayerRendererMixin {
                                           MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                                           float partialTick, int packedLight, int packedOverlay,
                                           float red, float green, float blue, float alpha, CallbackInfo ci) {
+        double age = renderAge(animatable);
+        ClientAgeData.renderAgeYears = age;
+
         if (!GenerationsConfig.get().modelScalingEnabled) return;
 
         float headScale = 1.0f;
-        double age = renderAge(animatable);
         if (!isOozaru(animatable) && age >= 0.0
                 && com.yuseix300.dmzgenerations.age.LifeStage.fromAge(age) == com.yuseix300.dmzgenerations.age.LifeStage.CHILD) {
             float scale = GenerationsConfig.get().modelScaleForAge(age);

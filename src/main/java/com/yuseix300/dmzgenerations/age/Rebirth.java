@@ -1,5 +1,7 @@
 package com.yuseix300.dmzgenerations.age;
 
+import com.dragonminez.common.network.NetworkHandler;
+import com.dragonminez.common.network.S2C.OpenRecustomizeS2C;
 import com.dragonminez.common.stats.StatsCapability;
 import com.dragonminez.common.stats.StatsData;
 import com.yuseix300.dmzgenerations.network.GenNetwork;
@@ -50,7 +52,12 @@ public final class Rebirth {
                     age.setGeneration(targetGen);
                     age.setAgeYears(AgeSettings.defaultStartAge());
                     AgeBonuses.applyAll(player);
+                    player.refreshDimensions();
                     GenNetwork.syncTo(player);
+
+                    if (AgeSettings.allowRaceChangeOnRebirth()) {
+                        NetworkHandler.sendToPlayer(new OpenRecustomizeS2C(), player);
+                    }
                 }));
         return Result.SUCCESS;
     }

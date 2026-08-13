@@ -6,6 +6,7 @@
   "lifestage.dmzgenerations.elder": "Elder",
   "message.dmzgenerations.grew": "§eYou've grown.§r You are now §b%s§r years old (%s).",
   "message.dmzgenerations.stage_up": "§6You've grown up!§r You are now §b%s§r (%s years old).",
+  "message.dmzgenerations.achaque": "§cYour old heart aches...§r",
   "hud.dmzgenerations.age": "§eAge:§r %s (%s)",
   "tooltip.dmzgenerations.age": "§eAge:§r %s (%s)",
   "tooltip.dmzgenerations.generation": "§eGeneration:§r %s",
