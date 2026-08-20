@@ -13,7 +13,7 @@ import software.bernie.geckolib.cache.object.GeoBone;
 @Mixin(DMZSkinLayer.class)
 public class DMZSkinLayerMixin {
 
-    private static final float HAIR_BASE_MARGIN = 0.5f;
+    private static final float HAIR_BASE_MARGIN = 0.55f;
     private static final float HAIR_BASE_PUSH = -0.05f;
 
     private static boolean dmzgenerations$logged = false;

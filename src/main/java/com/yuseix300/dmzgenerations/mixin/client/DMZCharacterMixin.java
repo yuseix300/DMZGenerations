@@ -18,16 +18,23 @@ public abstract class DMZCharacterMixin {
     private static final float[] GRAY = {0.78f, 0.78f, 0.80f};
     private static boolean dmzgenerations$logged = false;
 
+    @org.spongepowered.asm.mixin.Unique
+    private float dmzgenerations$grayStrength() {
+        double age = com.yuseix300.dmzgenerations.client.AgeCharacterLink.ageFor(
+                (com.dragonminez.common.stats.character.Character) (Object) this);
+        return GenerationsConfig.get().grayHairStrength(age);
+    }
+
     @Inject(method = "getRgbHairColor", at = @At("HEAD"))
     private void dmzgenerations$grayHead(CallbackInfoReturnable<float[]> cir) {
-        if (GenerationsConfig.get().grayHairStrength(ClientAgeData.renderAgeYears) > 0.0f) {
+        if (dmzgenerations$grayStrength() > 0.0f) {
             this.rgbHairColor = null;
         }
     }
 
     @Inject(method = "getRgbHairColor", at = @At("RETURN"), cancellable = true)
     private void dmzgenerations$grayReturn(CallbackInfoReturnable<float[]> cir) {
-        float g = GenerationsConfig.get().grayHairStrength(ClientAgeData.renderAgeYears);
+        float g = dmzgenerations$grayStrength();
         if (g <= 0.0f) return;
         float[] rgb = cir.getReturnValue();
         if (rgb == null || rgb.length < 3) return;

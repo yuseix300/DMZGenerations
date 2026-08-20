@@ -43,6 +43,8 @@ public class DMZPlayerRendererMixin {
                                           float red, float green, float blue, float alpha, CallbackInfo ci) {
         double age = renderAge(animatable);
         ClientAgeData.renderAgeYears = age;
+        animatable.getCapability(StatsCapability.INSTANCE).ifPresent(stats ->
+                com.yuseix300.dmzgenerations.client.AgeCharacterLink.link(stats.getCharacter(), animatable.getId()));
 
         if (!GenerationsConfig.get().modelScalingEnabled) return;
 

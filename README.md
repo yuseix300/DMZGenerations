@@ -88,9 +88,9 @@ appears), or with the rebirth command. Requirements:
    Gen 2 → level 2000 · Gen 3 → 4000 · Gen 4 → 6000 · Gen 5 → 8000.
 
 On rebirth, your progress is reset (like resetting your character) but you **gain a generation**
-and go back to being a child with the new buff. By default you rebirth as the **same race**; if
-`allowRaceChangeOnRebirth` is enabled, the **customization screen opens** so you can pick a new
-race and appearance.
+and go back to being a child with the new buff. By **default you are reborn as the same race** —
+only your progress resets, the character and race are kept. Set `allowRaceChangeOnRebirth` to `true`
+if you want the customization screen to open so you can pick a new race on rebirth.
 
 > ⚠️ Your generation **resets to Gen 1** if you use `/dmzstats reset` or reset your character
 > with Dende. That's the trade-off for losing your progress.
@@ -137,7 +137,7 @@ Because it runs a command, it keeps your generation buff — only your age reset
 
 Almost everything is tunable in `config/dmzgenerations/generations.json` (JSON, like DMZ): days
 per year, starting age, per-stage stat multipliers, perks, model scales, per-generation buff,
-required level, race change on rebirth, Time Chamber aging speed (`htcAgingMultiplier`), elder
+required level, Time Chamber aging speed (`htcAgingMultiplier`), elder
 ailments (`elderAchaque*`), gray hair (`grayHair*`), growth feedback (`growthEffectsEnabled`),
 etc. Run `/dmzgen reload` to apply changes live. Internal rendering details (how the hair texture
 is fitted) are intentionally **not** exposed here.
