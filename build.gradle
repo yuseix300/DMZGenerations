@@ -168,5 +168,7 @@ tasks.withType(Jar).configureEach {
 }
 
 tasks.named('jar', Jar).configure {
+    // Output the finished jar as "dmzgenerationsv<version>.jar" (mod_id stays the internal id).
+    archiveFileName = "dmzgenerations-v${project.mod_version}.jar"
     finalizedBy 'reobfJar'
 }
